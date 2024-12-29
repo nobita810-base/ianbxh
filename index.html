@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="./icon.jpg" type="image/x-icon">
+    <link rel="manifest" href="/site.webmanifest">
     <title>Doãn Công Sinh</title>
 </head>
 <body>
@@ -114,104 +115,128 @@
                 <div class="footer__item">
                     <span id="heart-counter" onclick="incrementHeart()">
                         <i class="fas fa-heart"></i>
-                        <span id="heart-count">32</span>
+                        <span id="heart-count">0</span>
                     </span>
                 </div>
                 <div class="footer__item">
-                    <span>
+                    <span id="comment-btn" onclick="showCommentAlert()">
                         <i class="fa fa-comment"></i>
-                        13
+                        0
                     </span>
                 </div>
                 <div class="footer__item">
-                    <span>
+                    <span id="share-btn" onclick="shareLink()">
                         <i class="fa fa-share"></i>
                         1
                     </span>
                 </div>
             </div>
-            
-            <style>
-                .fas.fa-heart.active {
-                    color: red;
-                    animation: heart-bounce 0.5s ease;
-                }
-            
-                @keyframes heart-bounce {
-                    0% {
-                        transform: scale(1);
-                    }
-                    50% {
-                        transform: scale(1.5);
-                    }
-                    100% {
-                        transform: scale(1);
-                    }
-                }
-            
-                .heart-animation {
-                    position: absolute;
-                    font-size: 2rem;
-                    color: red;
-                    opacity: 1;
-                    animation: heart-fly 1s ease forwards;
-                }
-            
-                @keyframes heart-fly {
-                    0% {
-                        transform: translateY(0) scale(1);
-                        opacity: 1;
-                    }
-                    100% {
-                        transform: translateY(-50px) scale(1.2);
-                        opacity: 0;
-                    }
-                }
-            </style>
-            
-            <script>
-                // Khởi tạo bộ đếm từ localStorage
-                function initializeHeartCounter() {
-                    const heartCounter = document.getElementById("heart-counter");
-                    const savedCount = localStorage.getItem("heartCount"); // Lấy số lượng từ localStorage
-                    const initialCount = savedCount ? parseInt(savedCount) : 32; // Giá trị mặc định
-                    document.getElementById("heart-count").textContent = initialCount;
-                }
-            
-                // Tạo hiệu ứng động cho "tim"
-                function createHeartAnimation() {
-                    const heartCounter = document.getElementById("heart-counter");
-                    const animationHeart = document.createElement("i");
-                    animationHeart.classList.add("fas", "fa-heart", "heart-animation");
-                    heartCounter.appendChild(animationHeart);
-            
-                    // Xóa hiệu ứng sau khi hoàn thành
-                    animationHeart.addEventListener("animationend", () => {
-                        animationHeart.remove();
-                    });
-                }
-            
-                // Hàm tăng số lượng heart và lưu vào localStorage
-                function incrementHeart() {
-                    const heartCounter = document.getElementById("heart-counter");
-                    const heartIcon = heartCounter.querySelector("i");
-                    const heartCount = document.getElementById("heart-count");
-                    let currentCount = parseInt(heartCount.textContent.trim());
-            
-                    if (!isNaN(currentCount)) {
-                        currentCount += 1; // Tăng giá trị
-                        heartCount.textContent = currentCount;
-                        localStorage.setItem("heartCount", currentCount); // Lưu vào localStorage
-            
-                        // Đổi màu tim và thêm hiệu ứng
-                        heartIcon.classList.add("active");
-                        createHeartAnimation();
-                    }
-                }
-            
-                // Khởi tạo khi tải trang
-                document.addEventListener("DOMContentLoaded", initializeHeartCounter);
-            </script>
-            
+        </div>
+    </div>
+
+    <style>
+        .fas.fa-heart.active {
+            color: red;
+            animation: heart-bounce 0.5s ease;
+        }
+
+        @keyframes heart-bounce {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heart-animation {
+            position: absolute;
+            font-size: 2rem;
+            color: red;
+            opacity: 1;
+            animation: heart-fly 1s ease forwards;
+        }
+
+        @keyframes heart-fly {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
+
+    <script>
+        function initializeHeartCounter() {
+            const heartCounter = document.getElementById("heart-counter");
+            const savedCount = localStorage.getItem("heartCount");
+            const initialCount = savedCount ? parseInt(savedCount) : 32;
+            document.getElementById("heart-count").textContent = initialCount;
+        }
+
+        // Tạo effect cho "tym"
+        function createHeartAnimation() {
+            const heartCounter = document.getElementById("heart-counter");
+            const animationHeart = document.createElement("i");
+            animationHeart.classList.add("fas", "fa-heart", "heart-animation");
+            heartCounter.appendChild(animationHeart);
+
+            // remove effect sau khi hoàn thành
+            animationHeart.addEventListener("animationend", () => {
+                animationHeart.remove();
+            });
+        }
+
+        // Hàm tăng số lượng heart và lưu vào localStorage
+        function incrementHeart() {
+            const heartCounter = document.getElementById("heart-counter");
+            const heartIcon = heartCounter.querySelector("i");
+            const heartCount = document.getElementById("heart-count");
+            let currentCount = parseInt(heartCount.textContent.trim());
+
+            if (!isNaN(currentCount)) {
+                currentCount += 1; // + số lượng
+                heartCount.textContent = currentCount;
+                localStorage.setItem("heartCount", currentCount); // Lưu vào localStorage
+
+                // Đổi màu tim và thêm hiệu ứng
+                heartIcon.classList.add("active");
+                createHeartAnimation();
+            }
+        }
+
+        // Hàm hiển thị thông báo khi click vào comment
+        function showCommentAlert() {
+            alert("Chức năng comment đang được cập nhật!");
+        }
+
+        // Hàm sao chép link và hiển thị thông báo khi click vào share
+        function shareLink() {
+            const link = "https://doancongsinh.id.vn"; // Link cần chia sẻ
+            navigator.clipboard.writeText(link).then(() => {
+                alert("Đã sao chép link web: " + link);
+            }).catch(err => {
+                alert("Không thể sao chép link. Vui lòng thử lại.");
+            });
+        }
+
+        // Khởi tạo khi tải trang
+        document.addEventListener("DOMContentLoaded", initializeHeartCounter);
+    </script>
+
 </body>
+
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
 </html>
