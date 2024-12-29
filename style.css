@@ -184,6 +184,12 @@ html {
     align-items: center;
     justify-content: center;
 }
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 .row {
     width: 100%;
@@ -194,12 +200,7 @@ html {
     justify-content: center;
 }
 
-body {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
+
 
 .col {
     width: 100%;
