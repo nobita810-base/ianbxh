@@ -11,6 +11,9 @@
         rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="./icon.jpg" type="image/x-icon">
+    <!-- <link rel="android-chrome" sizes="192x192" href="img/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png"> -->
     <link rel="manifest" href="/site.webmanifest">
     <title>Doãn Công Sinh</title>
 
@@ -161,7 +164,7 @@
                 <div class="footer__item">
                     <span id="heart-counter" onclick="incrementHeart()">
                         <i class="fas fa-heart"></i>
-                        <span id="heart-count">12k</span>
+                        <span id="heart-count">12000</span>
                     </span>
                 </div>
                 <div class="footer__item">
@@ -173,7 +176,7 @@
                 <div class="footer__item">
                     <span id="share-btn" onclick="shareLink()">
                         <i class="fa fa-share"></i>
-                        <span>1K</span> <!-- Số chia sẻ -->
+                        <span id="share-count">1</span> <!-- Số chia sẻ -->
                     </span>
                 </div>
             </div>
@@ -184,24 +187,28 @@
         function initializeHeartCounter() {
             const heartCounter = document.getElementById("heart-counter");
             const savedCount = localStorage.getItem("heartCount");
-            const initialCount = savedCount ? parseInt(savedCount) : 32;
+            const initialCount = savedCount ? parseInt(savedCount) : 12000; // Khởi tạo với số lượng tim đã lưu hoặc mặc định là 12000
             document.getElementById("heart-count").textContent = initialCount;
         }
 
-        // Tạo effect cho "tym"
+        function initializeShareCount() {
+            const shareCountElement = document.getElementById("share-count");
+            const savedShareCount = localStorage.getItem("shareCount");
+            const initialShareCount = savedShareCount ? parseInt(savedShareCount) : 1; // Khởi tạo với số lượt chia sẻ đã lưu hoặc mặc định là 1
+            shareCountElement.textContent = initialShareCount;
+        }
+
         function createHeartAnimation() {
             const heartCounter = document.getElementById("heart-counter");
             const animationHeart = document.createElement("i");
             animationHeart.classList.add("fas", "fa-heart", "heart-animation");
             heartCounter.appendChild(animationHeart);
 
-            // remove effect sau khi hoàn thành
             animationHeart.addEventListener("animationend", () => {
                 animationHeart.remove();
             });
         }
 
-        // Hàm tăng số lượng heart và lưu vào localStorage
         function incrementHeart() {
             const heartCounter = document.getElementById("heart-counter");
             const heartIcon = heartCounter.querySelector("i");
@@ -209,66 +216,41 @@
             let currentCount = parseInt(heartCount.textContent.trim());
 
             if (!isNaN(currentCount)) {
-                currentCount += 1; // + số lượng
+                currentCount += 1;
                 heartCount.textContent = currentCount;
-                localStorage.setItem("heartCount", currentCount); // Lưu vào localStorage
+                localStorage.setItem("heartCount", currentCount);
 
-                // Đổi màu tim và thêm hiệu ứng
                 heartIcon.classList.add("active");
                 createHeartAnimation();
             }
         }
 
-        // Hàm hiển thị thông báo khi click vào comment
         function showCommentAlert() {
             alert("Chức năng comment đang được cập nhật!");
         }
 
-        // Hàm sao chép link và hiển thị thông báo khi click vào share
         function shareLink() {
-            const link = "https://doancongsinh.id.vn"; // Link cần chia sẻ
-            const shareCountElement = document.getElementById("share-btn").querySelector("span"); // Lấy phần tử số chia sẻ
+            const link = "https://doancongsinh.id.vn";
+            const shareCountElement = document.getElementById("share-count");
 
-            // Lấy số chia sẻ từ nội dung của span và tăng lên 1
             let shareCount = parseInt(shareCountElement.textContent.trim()) || 0;
             shareCount += 1;
 
-            // Cập nhật lại số chia sẻ
             shareCountElement.textContent = shareCount;
+            localStorage.setItem("shareCount", shareCount);
 
-            // Sao chép link vào clipboard
             navigator.clipboard.writeText(link).then(() => {
                 alert("Đã sao chép link web: " + link);
             }).catch(err => {
                 alert("Không thể sao chép link. Vui lòng thử lại.");
             });
-
-            // Lưu vào localStorage
-            localStorage.setItem("shareCount", shareCount);
         }
 
-        // Thêm sự kiện kiểm tra chế độ dark mode
         document.addEventListener("DOMContentLoaded", function () {
-            const darkModeToggle = document.querySelector(".toggle__theme");
-            const body = document.body;
-
-            // Kiểm tra chế độ tối trong localStorage và bật nó nếu có
-            const isDarkMode = localStorage.getItem("darkMode") === "true";
-            if (isDarkMode) {
-                body.classList.add("dark-mode");
-            }
-
-            // Bật/tắt chế độ tối khi nhấn vào biểu tượng
-            darkModeToggle.addEventListener("click", function () {
-                body.classList.toggle("dark-mode");
-
-                // Lưu trạng thái dark mode vào localStorage
-                const isDarkModeNow = body.classList.contains("dark-mode");
-                localStorage.setItem("darkMode", isDarkModeNow);
-            });
+            initializeHeartCounter();
+            initializeShareCount();
         });
     </script>
-    
     </span>
     </div>
     </div>
