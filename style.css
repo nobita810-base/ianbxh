@@ -193,6 +193,14 @@ html {
     margin-right: -5px;
     justify-content: center;
 }
+
+body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .col {
     width: 100%;
     position: relative;
