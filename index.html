@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content='https://i.imgur.com/SmVw9Lg.jpg' property='og:image' />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
     <link rel="shortcut icon" href="./icon.jpg" type="image/x-icon">
     <link rel="manifest" href="/site.webmanifest">
     <title>Doãn Công Sinh</title>
+
+    <style>
+        .fas.fa-heart.active {
+            color: red;
+            animation: heart-bounce 0.5s ease;
+        }
+
+        @keyframes heart-bounce {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.5);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .heart-animation {
+            position: absolute;
+            font-size: 2rem;
+            color: red;
+            opacity: 1;
+            animation: heart-fly 1s ease forwards;
+        }
+
+        @keyframes heart-fly {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div class="app">
         <div class="card mg-10">
@@ -60,16 +104,18 @@
                     </div>
                     <div class="col col-lg-3 mt-10">
                         <div class="card__item">
-                            <a href="https://www.youtube.com/playlist?list=PL8zfhjKavmzeP6R8VteRkNGpmB7vbnUMU" target="_blank" class="card__link">
+                            <a href="https://www.youtube.com/playlist?list=PL8zfhjKavmzeP6R8VteRkNGpmB7vbnUMU"
+                                target="_blank" class="card__link">
                                 <div class="link__icon">
                                     <i class="fab fa-youtube" style="color: red;"></i>
                                 </div>
                             </a>
                         </div>
-                    </div>           
+                    </div>
                     <div class="col col-lg-3 mt-10">
                         <div class="card__item">
-                            <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzBWZZlBfKWfdTrXKRcKGHjzXmWJrNhxvcfxzgKqRxSqkNpCnGRGbZNLfftxRmBSGdvlgjz" class="card__link">
+                            <a href="https://mail.google.com/mail/u/0/#inbox?compose=GTvVlcRzBWZZlBfKWfdTrXKRcKGHjzXmWJrNhxvcfxzgKqRxSqkNpCnGRGbZNLfftxRmBSGdvlgjz"
+                                class="card__link">
                                 <div class="link__icon">
                                     <i class="fab fa-google" style="color: rgb(255, 0, 0);"></i>
                                 </div>
@@ -84,11 +130,11 @@
                                 </div>
                             </a>
                         </div>
-                    </div>                        
+                    </div>
                 </div>
             </div>
             <div class="toggle toggle__back">
-                <a href="https://zalo.me/036950428/"><i class="fas fa-arrow-left"></i></a>
+                <a href="https://zalo.me/0369590428/"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div class="toggle toggle__theme">
                 <i class="fas fa-moon"></i>
@@ -127,50 +173,12 @@
                 <div class="footer__item">
                     <span id="share-btn" onclick="shareLink()">
                         <i class="fa fa-share"></i>
-                        1
+                        <span>1</span> <!-- Số chia sẻ -->
                     </span>
                 </div>
             </div>
         </div>
     </div>
-
-    <style>
-        .fas.fa-heart.active {
-            color: red;
-            animation: heart-bounce 0.5s ease;
-        }
-
-        @keyframes heart-bounce {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.5);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .heart-animation {
-            position: absolute;
-            font-size: 2rem;
-            color: red;
-            opacity: 1;
-            animation: heart-fly 1s ease forwards;
-        }
-
-        @keyframes heart-fly {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-50px) scale(1.2);
-                opacity: 0;
-            }
-        }
-    </style>
 
     <script>
         function initializeHeartCounter() {
@@ -219,24 +227,54 @@
         // Hàm sao chép link và hiển thị thông báo khi click vào share
         function shareLink() {
             const link = "https://doancongsinh.id.vn"; // Link cần chia sẻ
+            const shareCountElement = document.getElementById("share-btn").querySelector("span"); // Lấy phần tử số chia sẻ
+
+            // Lấy số chia sẻ từ nội dung của span và tăng lên 1
+            let shareCount = parseInt(shareCountElement.textContent.trim()) || 0;
+            shareCount += 1;
+
+            // Cập nhật lại số chia sẻ
+            shareCountElement.textContent = shareCount;
+
+            // Sao chép link vào clipboard
             navigator.clipboard.writeText(link).then(() => {
                 alert("Đã sao chép link web: " + link);
             }).catch(err => {
                 alert("Không thể sao chép link. Vui lòng thử lại.");
             });
+
+            // Lưu vào localStorage
+            localStorage.setItem("shareCount", shareCount);
         }
 
-        // Khởi tạo khi tải trang
-        document.addEventListener("DOMContentLoaded", initializeHeartCounter);
-    </script>
+        // Thêm sự kiện kiểm tra chế độ dark mode
+        document.addEventListener("DOMContentLoaded", function () {
+            const darkModeToggle = document.querySelector(".toggle__theme");
+            const body = document.body;
 
+            // Kiểm tra chế độ tối trong localStorage và bật nó nếu có
+            const isDarkMode = localStorage.getItem("darkMode") === "true";
+            if (isDarkMode) {
+                body.classList.add("dark-mode");
+            }
+
+            // Bật/tắt chế độ tối khi nhấn vào biểu tượng
+            darkModeToggle.addEventListener("click", function () {
+                body.classList.toggle("dark-mode");
+
+                // Lưu trạng thái dark mode vào localStorage
+                const isDarkModeNow = body.classList.contains("dark-mode");
+                localStorage.setItem("darkMode", isDarkModeNow);
+            });
+        });
+    </script>
+    
+    </span>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <script src="./script.js"></script>
-    </body>
 </html>
