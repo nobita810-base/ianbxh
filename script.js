@@ -78,7 +78,25 @@ window.onload = function() {
         return false;
     }
 };
+document.addEventListener("DOMContentLoaded", () => {
+    const heartIcon = document.querySelector(".fa-heart");
 
+    heartIcon.addEventListener("click", (event) => {
+        // Tạo một phần tử span cho hiệu ứng tim
+        const heartEffect = document.createElement("span");
+        heartEffect.className = "heart-effect";
+        heartEffect.style.left = `${event.clientX}px`;
+        heartEffect.style.top = `${event.clientY}px`;
+
+        // Thêm phần tử vào body
+        document.body.appendChild(heartEffect);
+
+        // Xóa hiệu ứng sau khi hoàn thành
+        setTimeout(() => {
+            heartEffect.remove();
+        }, 600);
+    });
+});
 //Chống Ctrl + U
 document.onkeydown = function(e) {
     if (e.ctrlKey && 
