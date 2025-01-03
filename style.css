@@ -37,19 +37,19 @@ html {
     --icon-youtube: #FF0000;
     --icon-tiktok: #000;
 }
-
 .app {
     width: 100%;
     height: 100vh;
     background-attachment: fixed;
-    background: var(--bg-main);
-    transition: all .3s linear;
-    -moz-transition: all .3s linear;
-    -webkit-transition: all .3s linear;
-    -o-transition: all .3s linear;
+    background: url('./images/3.jpg') no-repeat center center/cover;
+    transition: all 0.3s linear;
+    -moz-transition: all 0.3s linear;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
 }
+
 .app.dark {
-    background: var(--bg-dark);
+    background: url('./images/4.jpg') no-repeat center center/cover;
 }
 
 .card {
