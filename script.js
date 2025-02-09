@@ -14,7 +14,6 @@ toggle.addEventListener("click", () => {
 
     }
 })
-
 //Chống copy
 function killCopy(e){
     return false;
@@ -78,7 +77,42 @@ window.onload = function() {
         return false;
     }
 };
+document.addEventListener("DOMContentLoaded", function () {
+    const audio = document.getElementById("background-music");
+    const disc = document.getElementById("disc");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const changeMusicBtn = document.getElementById("change-music-btn");
+    const musicUpload = document.getElementById("music-upload");
 
+    // Play/Pause functionality
+    // playPauseBtn.addEventListener("click", function () {
+    //     if (audio.paused) {
+    //         audio.play();
+    //         disc.style.animationPlayState = "running";
+    //         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+    //     } else {
+    //         audio.pause();
+    //         disc.style.animationPlayState = "paused";
+    //         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+    //     }
+    // });
+
+    // Change music functionality
+    changeMusicBtn.addEventListener("click", function () {
+        musicUpload.click();
+    });
+
+    musicUpload.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const fileURL = URL.createObjectURL(file);
+            audio.src = fileURL;
+            audio.play();
+            disc.style.animationPlayState = "running";
+            playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        }
+    });
+});
 //Chống Ctrl + U
 document.onkeydown = function(e) {
     if (e.ctrlKey && 

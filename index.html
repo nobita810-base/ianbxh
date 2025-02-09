@@ -15,9 +15,64 @@
         <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32x32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png"> -->
     <link rel="manifest" href="/site.webmanifest">
+    <script src="musicPlayer.js" defer></script>
     <title>Doãn Công Sinh</title>
 
     <style>
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50px;
+            padding: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+        }
+
+        .disc-container {
+            width: 50px;
+            height: 50px;
+            position: relative;
+        }
+
+        .disc {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: rotate 5s linear infinite;
+            animation-play-state: running;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .controls {
+            margin-left: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+        }
+
+        .controls button:hover {
+            color: #000;
+        }
         .fas.fa-heart.active {
             color: red;
             animation: heart-bounce 0.5s ease;
@@ -36,7 +91,6 @@
                 transform: scale(1);
             }
         }
-
         .heart-animation {
             position: absolute;
             font-size: 2rem;
@@ -137,7 +191,7 @@
                 </div>
             </div>
             <div class="toggle toggle__back">
-                <a href="https://zalo.me/0369590428/"><i class="fas fa-arrow-left"></i></a>
+                <a href="index.html"><i class="fas fa-arrow-left"></i></a>
             </div>
             <div class="toggle toggle__theme">
                 <i class="fas fa-moon"></i>
@@ -145,14 +199,14 @@
             <div class="button__list mt-10">
                 <div class="row">
                     <div class="col col-lg-6 mt-10">
-                        <a href="https://www.facebook.com/doan.cong.sinh.2024" target="_blank">
+                        <a href="https://zalo.me/0369590428/" target="_blank">
                             <div class="button button__message ">
                                 <span> Nhắn Tin </span>
                             </div>
                         </a>
                     </div>
                     <div class="col col-lg-6 mt-10">
-                        <a href="https://www.facebook.com/doan.cong.sinh.2024" target="_blank">
+                        <a href="https://www.facebook.com/doan.cong.sinh.2024/" target="_blank">
                             <div class="button button__subscribe ">
                                 <span> Theo Dõi </span>
                             </div>
@@ -180,6 +234,12 @@
                     </span>
                 </div>
             </div>
+        </div>
+        <div class="music-player">
+            <div class="disc-container">
+                <img src="./images/dia1.png" alt="Music Disc" class="disc" id="disc">
+            </div>
+            <audio id="background-music" src="./music/music1.mp3" autoplay loop></audio>
         </div>
     </div>
 
