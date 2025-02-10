@@ -14,6 +14,26 @@ toggle.addEventListener("click", () => {
 
     }
 })
+setInterval(function () {
+    if (window.outerWidth - window.innerWidth > 200 || window.outerHeight - window.innerHeight > 200) {
+        document.body.innerHTML = "DevTools bị chặn!";
+    }
+}, 1000);
+(function() {
+    var devtools = { open: false };
+    var threshold = 160;
+    
+    setInterval(function() {
+        var start = performance.now();
+        debugger;  // Dừng chương trình nếu mở DevTools
+        var end = performance.now();
+        if (end - start > threshold) {
+            devtools.open = true;
+            document.body.innerHTML = "DevTools bị chặn!";
+        }
+    }, 1000);
+})();
+
 //Chống copy
 function killCopy(e){
     return false;

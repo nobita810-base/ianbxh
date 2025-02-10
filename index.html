@@ -112,6 +112,17 @@
         }
     </style>
 </head>
+<noscript>
+    <style>
+        body {
+            display: none;
+        }
+    </style>
+    <h1>Vui lòng bật JavaScript để truy cập trang web này!</h1>
+</noscript>
+<div class="app">
+        <h1>Chào mừng đến với trang web của Doãn Công Sinh</h1>
+    </div>
 
 <body>
     <div class="app">
@@ -310,6 +321,20 @@
             initializeHeartCounter();
             initializeShareCount();
         });
+        (function() {
+            var threshold = 160; // Ngưỡng thời gian để phát hiện DevTools
+            var checkDevTools = function() {
+                var start = new Date();
+                debugger; // Khi DevTools mở, thời gian thực thi sẽ chậm hơn
+                var end = new Date();
+                if (end - start > threshold) {
+                    document.body.innerHTML = "<h1>DevTools bị chặn!</h1>";
+                }
+            };
+
+            // Kiểm tra liên tục mỗi giây
+            setInterval(checkDevTools, 1000);
+        })();
     </script>
     </span>
     </div>
