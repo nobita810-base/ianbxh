@@ -78,29 +78,33 @@ window.onload = function() {
     }
 };
 document.addEventListener("DOMContentLoaded", function () {
-    const audio = document.getElementById("background-music");
+    const backgroundMusic = document.getElementById("background-music");
     const disc = document.getElementById("disc");
-    const playPauseBtn = document.getElementById("play-pause-btn");
-    const changeMusicBtn = document.getElementById("change-music-btn");
-    const musicUpload = document.getElementById("music-upload");
+    const playPauseBtn = document.getElementById("playPauseBtn");
 
-    // Play/Pause functionality
-    // playPauseBtn.addEventListener("click", function () {
-    //     if (audio.paused) {
-    //         audio.play();
-    //         disc.style.animationPlayState = "running";
-    //         playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
-    //     } else {
-    //         audio.pause();
-    //         disc.style.animationPlayState = "paused";
-    //         playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
-    //     }
-    // });
+    const toggleMusic = () => {
+        if (backgroundMusic.paused) {
+            backgroundMusic.play().then(() => {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                disc.classList.add("rotate");
+            }).catch((error) => {
+                console.log("Lỗi khi phát nhạc:", error);
+            });
+        } else {
+            backgroundMusic.pause();
+            playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+            disc.classList.remove("rotate");
+        }
+    };
 
-    // Change music functionality
-    changeMusicBtn.addEventListener("click", function () {
-        musicUpload.click();
-    });
+    // Bắt sự kiện click để bật/tắt nhạc
+    playPauseBtn.addEventListener("click", toggleMusic);
+
+    // Phát nhạc ngay lần đầu tiên người dùng click vào trang
+    document.addEventListener("click", function() {
+        toggleMusic();
+    }, { once: true });
+});
 
     musicUpload.addEventListener("change", function (event) {
         const file = event.target.files[0];
@@ -112,7 +116,6 @@ document.addEventListener("DOMContentLoaded", function () {
             playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
         }
     });
-});
 //Chống Ctrl + U
 document.onkeydown = function(e) {
     if (e.ctrlKey && 

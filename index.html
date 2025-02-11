@@ -17,7 +17,7 @@
     <link rel="manifest" href="/site.webmanifest">
     <script src="musicPlayer.js" defer></script>
     <title>Doãn Công Sinh</title>
-
+    <title>Audio Player</title>
     <style>
         .music-player {
             position: fixed;
@@ -239,10 +239,11 @@
             <div class="disc-container">
                 <img src="./images/dia1.png" alt="Music Disc" class="disc" id="disc">
             </div>
-            <audio id="background-music" src="./music/music1.mp3" autoplay loop></audio>
+            <audio id="background-music" src="./music/music1.mp3"></audio>
+            <div class="controls">
+                <button id="playPauseBtn"><i class="fas fa-play"></i></button>
+            </div>
         </div>
-    </div>
-
     <script>
         function initializeHeartCounter() {
             const heartCounter = document.getElementById("heart-counter");
@@ -310,20 +311,6 @@
             initializeHeartCounter();
             initializeShareCount();
         });
-        (function() {
-            var threshold = 160; // Ngưỡng thời gian để phát hiện DevTools
-            var checkDevTools = function() {
-                var start = new Date();
-                debugger; // Khi DevTools mở, thời gian thực thi sẽ chậm hơn
-                var end = new Date();
-                if (end - start > threshold) {
-                    document.body.innerHTML = "<h1>DevTools bị chặn!</h1>";
-                }
-            };
-
-            // Kiểm tra liên tục mỗi giây
-            setInterval(checkDevTools, 1000);
-        })();
     </script>
     </span>
     </div>

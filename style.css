@@ -389,19 +389,19 @@ body {
     flex-wrap: wrap;
 }
 
-.spin {
-    animation: spin 3s linear infinite;
+.rotate {
+    animation: rotate 5s linear infinite;
+    animation-play-state: running; /* Mặc định quay khi phát nhạc */
 }
 
-@keyframes spin {
-    0% {
+@keyframes rotate {
+    from {
         transform: rotate(0deg);
     }
-    100% {
+    to {
         transform: rotate(360deg);
     }
 }
-
 .button {
     position: relative;
     display: flex;

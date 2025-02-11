@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const playMusic = () => {
         backgroundMusic.play().then(() => {
-            disc.classList.add("spin");
+            disc.classList.add("rotate");
         }).catch((error) => {
             console.log("Error playing music:", error);
         });
