@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.addEventListener('click', function() {
         // Phát nhạc ngay lập tức
         playMusic();
-        // Phát nhạc sau 5 giây
+        // Phát nhạc sau 2 giây
         setTimeout(playMusic, 2000);
     }, { once: true });
 });
