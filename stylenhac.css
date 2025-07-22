@@ -35,11 +35,6 @@ body {
   border-radius: 7px;
   background: url('img/bgr.jpg') no-repeat center center;
   background-size: cover;
-  animation: fadeIn 1s ease-out;
-  transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
-  -o-transition: all .3s linear;
 }
 
 .wrapper {
@@ -50,11 +45,6 @@ body {
   border-radius: 15px;
   background: #1f1f27;
   box-shadow: 0px 6px 15px var(--lightbshadow);
-  animation: fadeIn 1s ease-out;
-  transition: all .3s linear;
-  -moz-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
-  -o-transition: all .3s linear;
 }
 
 .wrapper i {
@@ -80,20 +70,12 @@ body {
 
 .top-bar i:first-child {
   margin-left: -7px;
-  transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
 }
 
 .top-bar span {
   font-size: 18px;
   margin-left: -3px;
   color: var(--white);
-  transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
 }
 
 .img-area {
@@ -103,20 +85,12 @@ body {
   margin-top: 25px;
   border-radius: 15px;
   box-shadow: 0px 6px 12px var(--lightbshadow);
-  transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
 }
 
 .img-area img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: all 0.5s linear;
-  -moz-transition: all 0.5s linear;
-  -webkit-transition: all 0.5s linear;
-  -o-transition: all 0.5s linear;
 }
 
 .song-details {
