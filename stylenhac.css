@@ -35,6 +35,18 @@ body {
   border-radius: 7px;
   background: url('img/bgr.jpg') no-repeat center center;
   background-size: cover;
+  /* Giúp hình nền phủ kín toàn bộ */
+  background-position: center;
+  /* Canh giữa hình nền */
+  background-repeat: no-repeat;
+  /* Không lặp lại hình */
+}
+
+.content {
+  color: white;
+  text-align: center;
+  padding-top: 50px;
+  font-size: 2rem;
 }
 
 .wrapper {
@@ -96,7 +108,7 @@ body {
 .song-details {
   text-align: center;
   margin: 30px 0;
-  
+
 }
 
 .song-details p {
