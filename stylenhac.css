@@ -55,9 +55,10 @@ body {
   overflow: hidden;
   position: relative;
   border-radius: 15px;
-  background: #1f1f27;
+  background: rgba(31, 31, 39, 0.6); /* 0.6 = 60% độ mờ, điều chỉnh theo ý bạn */
   box-shadow: 0px 6px 15px var(--lightbshadow);
 }
+
 
 .wrapper i {
   cursor: pointer;
