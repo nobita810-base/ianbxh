@@ -31,6 +31,7 @@ html {
     --outer-shadow-dark-o: 6px 6px 10px -1px rgba(0, 0, 0, 0.3),
         -6px -6px 10px -1px rgba(255, 255, 255, 0.1), inset 6px 6px 10px -1px rgba(0, 0, 0, 0.3),
         inset -6px -6px 10px -1px rgba(255, 255, 255, 0.1);
+    --lightbshadow: rgba(0, 0, 0, 0.15);
     --icon-fb: #4267B2;
     --icon-insta: #FB3958;
     --icon-github: #333;
@@ -42,30 +43,15 @@ html {
     width: 100%;
     height: 100vh;
     background-attachment: fixed;
-    background: url('./images/3.png') no-repeat center center/cover;
-    transition: all 0.3s linear;
-    -moz-transition: all 0.3s linear;
-    -webkit-transition: all 0.3s linear;
-    -o-transition: all 0.3s linear;
-}
-
-.background {
-    background: url(../media/40.df5c2e3164cc8269d8a3.png) no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    height: 150%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    transition: -webkit-transform 5s ease-in-out;
-    transition: transform 5s ease-in-out;
-    transition: transform 5s ease-in-out, -webkit-transform 5s ease-in-out;
-    width: 150%;
-    z-index: -1
+    background: var(--bg-main);
+    transition: all .3s linear;
+    -moz-transition: all .3s linear;
+    -webkit-transition: all .3s linear;
+    -o-transition: all .3s linear;
 }
 
 .app.dark {
-    background: url('./images/4.jpg') no-repeat center center/cover;
+    background: var(--bg-dark);
 }
 
 .card {
@@ -83,7 +69,7 @@ html {
     flex-direction: column;
     justify-content: center;
     background: var(--white-color);
-    border-radius: 7px;
+    border-radius: 15px;
     background: var(--bg-main);
     box-shadow: var(--outer-shadow);
     transition: all .3s linear;
@@ -99,8 +85,10 @@ html {
 }
 
 .app.dark .card {
-    background: var(--bg-dark);
     box-shadow: var(--outer-shadow-dark);
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.6);
+    /* 0.6 = 60% độ mờ, điều chỉnh theo ý bạn */
 }
 
 .card__title {
